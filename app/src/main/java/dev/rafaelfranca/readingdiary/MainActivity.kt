@@ -1,0 +1,62 @@
+package dev.rafaelfranca.readingdiary
+
+import android.os.Bundle
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import dev.rafaelfranca.readingdiary.ui.theme.ReadingDiaryTheme
+
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContent {
+            ReadingDiaryTheme {
+                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
+                    Greeting(
+                        name = "Android",
+                        modifier = Modifier.padding(innerPadding)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun Greeting (name: String, modifier: Modifier = Modifier) {
+    Column(
+        modifier = modifier.padding(16.dp)
+    ) {
+        Text(
+            text = "Diário de Leitura de $name!",
+            style = MaterialTheme.typography.headlineSmall
+        )
+        Text(
+            text = "Livro atual: Clean Architecture",
+            style = MaterialTheme.typography.bodyLarge
+        )
+        Text(
+            text = "Progresso: Página 45 de 320",
+            style = MaterialTheme.typography.bodyMedium
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    ReadingDiaryTheme() {
+        Greeting("Rafael")
+    }
+}
